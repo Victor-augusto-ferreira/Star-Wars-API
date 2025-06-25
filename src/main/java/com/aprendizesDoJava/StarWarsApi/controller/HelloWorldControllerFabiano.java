@@ -12,7 +12,7 @@ public class HelloWorldControllerFabiano {
     @GetMapping
     public ResponseEntity<HelloWorldApiResponse> getHelloWorldAsJson(){
         HelloWorldApiResponse response = new HelloWorldApiResponse();
-        response.setMessage("Hello World");
+        response.setMessage("Hello World!");
         return ResponseEntity.ok(response);
 
     }
