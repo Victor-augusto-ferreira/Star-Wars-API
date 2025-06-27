@@ -8,11 +8,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class HelloWorldControllerTest {
 
-    private final HelloWorldController helloWorldController = new HelloWorldController();
+    private final HelloWorldControllerVictor helloWorldControllerVictor = new HelloWorldControllerVictor();
 
     @Test
     void getHelloWorld() {
-        ResponseEntity<HelloWorldApiResponse> result = helloWorldController.getHelloWorld();
+        ResponseEntity<HelloWorldApiResponse> result = helloWorldControllerVictor.getHelloWorld();
 
         assertNotNull(result);
         assertEquals(200, result.getStatusCodeValue());
