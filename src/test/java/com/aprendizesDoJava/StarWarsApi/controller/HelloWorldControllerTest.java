@@ -1,21 +1,25 @@
 package com.aprendizesDoJava.StarWarsApi.controller;
 
-import com.aprendizesDoJava.StarWarsApi.controller.response.HelloWorldApiResponse;
 import org.junit.jupiter.api.Test;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-class HelloWorldControllerTest {
+@WebMvcTest(HelloWorldController.class)
+public class HelloWorldControllerTest {
 
-    private final HelloWorldController helloWorldController = new HelloWorldController();
+    @Autowired
+    private MockMvc mockMvc;
 
     @Test
-    void getHelloWorld() {
-        ResponseEntity<HelloWorldApiResponse> result = helloWorldController.getHelloWorld();
-
-        assertNotNull(result);
-        assertEquals(200, result.getStatusCodeValue());
-        assertEquals("Hello World!", result.getBody().getMessage());
+    public void shouldReturnHelloWorldMessage() throws Exception {
+        mockMvc.perform(get("/api/v1/hello-world")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.message").value("Hello World!"));
     }
 }

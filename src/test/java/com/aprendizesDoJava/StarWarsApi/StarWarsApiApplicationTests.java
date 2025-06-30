@@ -9,5 +9,4 @@ class StarWarsApiApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }
